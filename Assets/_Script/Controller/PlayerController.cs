@@ -11,11 +11,14 @@ public class PlayerController : MonoBehaviour {
 	public Camera mainCamera;
 	public float speedFactor;
 	public float tiltFactor;
+	public GameObject explosion;
 
 	// Positioning and control
+	private const float CONTROL_THRESHOLD = 1.0f / 10.0f;
 	private Rigidbody body;
 	private Boundary boundary = new Boundary();
 	private AudioSource audioSource;
+
 
 	// Shooting
 	public GameObject bullet;
@@ -23,12 +26,11 @@ public class PlayerController : MonoBehaviour {
 	public Transform spawnLeft;
 	public Transform spawnRight;
 
+
 	public int bulletLevel;
 	private float fireRate = 0.5f;
 	private float fireNext = 0.0f;
 
-
-	private const float CONTROL_THRESHOLD = 1.0f / 10.0f;
 		
 	/*
 	 * Set game boundary
@@ -47,16 +49,16 @@ public class PlayerController : MonoBehaviour {
 	// Update capture firing
 	void Update ()
 	{
-		if (Time.time >= fireNext) {
+		if (Time.time >= fireNext && bulletLevel != 0) {
 			fireNext = Time.time + fireRate;
 			audioSource.Play ();
 
 			// Triple bullet
-			if (bulletLevel >= 20) {
+			if (bulletLevel >= 3) {
 				spawnBulletLeft ();
 				spawnBulletFront ();
 				spawnBulletRight ();
-			} else if (bulletLevel >= 10) { // Double bullet
+			} else if (bulletLevel >= 2) { // Double bullet
 				spawnBulletLeft ();
 				spawnBulletRight ();
 			} else { // Single bullet
@@ -107,6 +109,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.CompareTag ("Rune")) {
 			bulletLevel++;
 			Destroy (other.gameObject);
+			//runeAudio.Play ();
 		}
 	}
 }

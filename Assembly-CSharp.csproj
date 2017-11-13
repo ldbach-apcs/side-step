@@ -51,8 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\_Script\PlayerController.cs" />
-     <Compile Include="Assets\_Script\UniversalObjectMover.cs" />
+     <Compile Include="Assets\_Script\Controller\GameController.cs" />
+     <Compile Include="Assets\_Script\Controller\PlayerController.cs" />
+     <Compile Include="Assets\_Script\DestroyScript\DestroyByBoundary.cs" />
+     <Compile Include="Assets\_Script\DestroyScript\DestroyByContact.cs" />
+     <Compile Include="Assets\_Script\DestroyScript\DestroyByTimeSpan.cs" />
+     <Compile Include="Assets\_Script\ObjectMover\AsteroidRotator.cs" />
+     <Compile Include="Assets\_Script\ObjectMover\UniversalObjectMover.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
