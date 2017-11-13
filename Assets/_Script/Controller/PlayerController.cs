@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject explosion;
 
 	// Positioning and control
-	private const float CONTROL_THRESHOLD = 1.0f / 10.0f;
+	private const float CONTROL_THRESHOLD = 0.07f;
 	private Rigidbody body;
 	private Boundary boundary = new Boundary();
 	private AudioSource audioSource;
@@ -28,8 +28,12 @@ public class PlayerController : MonoBehaviour {
 
 
 	public int bulletLevel;
-	private float fireRate = 0.5f;
+
+	// private float startFireRate = 1.2f;
+	private const float minFireRate = 0.45f;
+	private float fireRate = 1.2f;
 	private float fireNext = 0.0f;
+
 
 		
 	/*
@@ -44,21 +48,25 @@ public class PlayerController : MonoBehaviour {
 
 		body = GetComponent<Rigidbody> ();
 		audioSource = GetComponent<AudioSource> ();
+
+		// fireRate = startFireRate;
 	}
 
 	// Update capture firing
 	void Update ()
 	{
+		// fireRate = Mathf.Max (minFireRate, startFireRate - 0.05f * bulletLevel);
+
 		if (Time.time >= fireNext && bulletLevel != 0) {
 			fireNext = Time.time + fireRate;
 			audioSource.Play ();
 
 			// Triple bullet
-			if (bulletLevel >= 3) {
+			if (bulletLevel >= 10) {
 				spawnBulletLeft ();
 				spawnBulletFront ();
 				spawnBulletRight ();
-			} else if (bulletLevel >= 2) { // Double bullet
+			} else if (bulletLevel >= 5) { // Double bullet
 				spawnBulletLeft ();
 				spawnBulletRight ();
 			} else { // Single bullet
@@ -85,11 +93,11 @@ public class PlayerController : MonoBehaviour {
 	// FixedUpdate capture movemnet
 	void FixedUpdate ()
 	{
-		//float moveHorizontal = Input.acceleration.z;
-		//if (Mathf.Abs (moveHorizontal) < CONTROL_THRESHOLD)
-		//	moveHorizontal = 0;
+		float moveHorizontal = Input.acceleration.x;
+		if (Mathf.Abs (moveHorizontal) < CONTROL_THRESHOLD)
+			moveHorizontal = 0.0f;
 
-		float moveHorizontal = Input.GetAxis("Horizontal");
+		//float moveHorizontal = Input.GetAxis("Horizontal");
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);
 
 		movement.Normalize();
@@ -110,6 +118,9 @@ public class PlayerController : MonoBehaviour {
 			bulletLevel++;
 			Destroy (other.gameObject);
 			//runeAudio.Play ();
+
+			if (fireRate > minFireRate)
+				fireRate -= 0.05f;
 		}
 	}
 }

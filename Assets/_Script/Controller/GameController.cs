@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
 	private int[] asteroidCountVar = new int[] { -1, 3 };
 	private List<GameObject> objects = new List<GameObject>();
 
-	private float startWait = 1.0f;
+	private float startWait = 1.5f;
 	private float spawnWait = 0.5f;
 	private float waveWait = 0.6f;
 
@@ -25,6 +25,8 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Input.backButtonLeavesApp = true;
+
 		objects.Add (asteroid_01);
 		objects.Add (asteroid_02);
 		objects.Add (asteroid_03);
@@ -63,7 +65,7 @@ public class GameController : MonoBehaviour {
 			new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 		Quaternion spawnRot = Quaternion.identity;
 
-		Instantiate (objects[(int) Random.Range (0, 2)], spawnPos, spawnRot);
+		Instantiate (objects[(int) Random.Range (0, 3)], spawnPos, spawnRot);
 	}
 
 	void SpawnRune () {
