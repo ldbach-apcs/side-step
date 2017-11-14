@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\_Script\Controller\GameController.cs" />
+     <Compile Include="Assets\_Script\Controller\MusicController.cs" />
      <Compile Include="Assets\_Script\Controller\PlayerController.cs" />
+     <Compile Include="Assets\_Script\Controller\UIController.cs" />
      <Compile Include="Assets\_Script\DestroyScript\DestroyByBoundary.cs" />
      <Compile Include="Assets\_Script\DestroyScript\DestroyByContact.cs" />
      <Compile Include="Assets\_Script\DestroyScript\DestroyByTimeSpan.cs" />

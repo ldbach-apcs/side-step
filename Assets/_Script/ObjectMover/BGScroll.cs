@@ -5,7 +5,7 @@ using UnityEngine;
 public class BGScroll : MonoBehaviour {
 
 	private float scrollSpeed;
-	private float startScrollSpeed = -3.0f;
+	// private float startScrollSpeed = -3.0f;
 	private const float targetScrollSpeed = -0.3f;
 	public float tileSizeZ;
 
@@ -20,7 +20,7 @@ public class BGScroll : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float newPos = Mathf.Repeat (Time.time * scrollSpeed, tileSizeZ);
-		print ("Speed: " + scrollSpeed + "\nPosition: " + (startPos + Vector3.forward * newPos));
+		// print ("Speed: " + scrollSpeed + "\nPosition: " + (startPos + Vector3.forward * newPos));
 		this.transform.position = startPos + Vector3.forward * newPos;
 	}
 }

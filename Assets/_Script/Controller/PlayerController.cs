@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject explosion;
 
 	// Positioning and control
-	private const float CONTROL_THRESHOLD = 0.07f;
+	private const float CONTROL_THRESHOLD = 0.025f;
 	private Rigidbody body;
 	private Boundary boundary = new Boundary();
 	private AudioSource audioSource;
@@ -34,8 +34,9 @@ public class PlayerController : MonoBehaviour {
 	private float fireRate = 1.2f;
 	private float fireNext = 0.0f;
 
+	private UIController uiController;
+	private const int RUNE_SCORE = 5;	
 
-		
 	/*
 	 * Set game boundary
 	 */ 
@@ -48,6 +49,10 @@ public class PlayerController : MonoBehaviour {
 
 		body = GetComponent<Rigidbody> ();
 		audioSource = GetComponent<AudioSource> ();
+
+		// Setup UI
+		GameObject uiObject = GameObject.FindWithTag ("UIController");
+		uiController = uiObject.GetComponent <UIController> ();
 
 		// fireRate = startFireRate;
 	}
@@ -115,10 +120,9 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerEnter (Collider other)
 	{
 		if (other.CompareTag ("Rune")) {
+			uiController.UpdateScore (RUNE_SCORE);
 			bulletLevel++;
 			Destroy (other.gameObject);
-			//runeAudio.Play ();
-
 			if (fireRate > minFireRate)
 				fireRate -= 0.05f;
 		}
