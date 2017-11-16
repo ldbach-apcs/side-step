@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour {
 
-	public Text scoreText, gameOverText, restartText;
+	public Text scoreText, gameOverText, restartText, highScoreText;
 
 
 
@@ -34,4 +34,11 @@ public class UIController : MonoBehaviour {
 		scoreText.text = "Score: " + score;
 	}
 
+	public void UpdateHighScore () {
+		highScoreText.text = "Highscore: " + SaveLoad.LoadHighScore ();
+	}
+
+	public int GetScore () {
+		return score;
+	}
 }

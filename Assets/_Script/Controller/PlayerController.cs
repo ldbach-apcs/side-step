@@ -99,13 +99,13 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		float moveHorizontal = Input.acceleration.x;
-		if (Mathf.Abs (moveHorizontal) < CONTROL_THRESHOLD)
-			moveHorizontal = 0.0f;
+		// if (Mathf.Abs (moveHorizontal) < CONTROL_THRESHOLD)
+		//	moveHorizontal = 0.0f;
 
-		//float moveHorizontal = Input.GetAxis("Horizontal");
+		// float moveHorizontal = Input.GetAxis("Horizontal");
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, 0.0f);
 
-		movement.Normalize();
+		// movement.Normalize();
 		body.velocity = movement * speedFactor;
 
 		body.position = new Vector3(

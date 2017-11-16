@@ -61,6 +61,7 @@
      <Compile Include="Assets\_Script\ObjectMover\AsteroidRotator.cs" />
      <Compile Include="Assets\_Script\ObjectMover\BGScroll.cs" />
      <Compile Include="Assets\_Script\ObjectMover\UniversalObjectMover.cs" />
+     <Compile Include="Assets\_Script\SaveLoad.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

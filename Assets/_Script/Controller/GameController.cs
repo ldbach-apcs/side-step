@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour {
 		// Setup UI
 		GameObject uiControllerObject = GameObject.FindWithTag ("UIController");
 		uiController =	uiControllerObject.GetComponent<UIController> ();
-
+		uiController.UpdateHighScore ();
 		StartCoroutine (SpawnWaves ());
 	}
 
@@ -117,5 +117,6 @@ public class GameController : MonoBehaviour {
 		isGameOver = true;
 		uiController.UpdateGameOverText ();
 		//gameOverText.text = "Game Over";
+		SaveLoad.SaveHighScore(uiController.GetScore ());
 	}
 }
